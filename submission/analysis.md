@@ -38,5 +38,14 @@ Traffic to Lagos often routes through Europe due to the structure of global inte
 
 As a result, data traveling to or from Africa frequently passes through Europe first, increasing latency and inefficiency. Improving regional fiber networks and increasing the number of direct connections and Internet Exchange Points within Africa would help reduce this inefficiency.
 
+4\. Unreachable and Physically Impossible Results
+
+The domain for São Paulo (google.com.br) was unreachable during testing. This is likely due to server-side restrictions, DNS resolution issues, or timeouts. Some websites block automated HTTP requests or do not respond within the timeout window used in the script, causing them to appear unreachable even though the network path may exist.
+
+Additionally, some locations produced inefficiency ratios below 1, specifically Sydney (0.78) and Singapore (0.92). These values are physically impossible because no signal can travel faster than the speed of light. This indicates that the measured RTT does not correspond to the actual geographic destination used in the theoretical calculation.
+
+This occurs because services like Google use Content Delivery Networks (CDNs) and Anycast routing. Requests to domains such as google.com.au and google.com.sg are routed to nearby edge servers in the United States rather than to servers located in Australia or Singapore. As a result, the measured RTT reflects a much shorter physical path than assumed, leading to ratios below 1.
+
+Traceroute results confirmed this behavior, showing that requests to these domains terminated at nearby Google servers with very low latency, rather than traveling across the globe to their expected locations.
 
 
